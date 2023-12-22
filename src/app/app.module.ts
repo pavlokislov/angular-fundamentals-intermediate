@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { EventsAppComponent } from './events-app.component';
+import {EventsListComponent} from './events/events-list.component';
+import {EventThumbnailComponent} from './events/event-thumbnail/event-thumbnail.component';
+import {NavigationBarComponent} from './navigation/navigation-bar.component';
 
 @NgModule({
   // importing other modules
@@ -10,7 +13,10 @@ import { EventsAppComponent } from './events-app.component';
   ],
   // add component, pipe or directive
   declarations: [
-    EventsAppComponent
+    EventsAppComponent,
+    EventsListComponent,
+    EventThumbnailComponent,
+    NavigationBarComponent
   ],
   // add services
   providers: [],
