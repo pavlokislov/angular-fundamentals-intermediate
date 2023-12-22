@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "11.2.4",
     "@angular/router": "11.2.4",
     "ngf-bootstrap": "0.0.5",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^6.21.1",
     "rxjs": "6.6.0",
     "toaster": "^0.1.2",
     "toastr": "^2.1.4",
