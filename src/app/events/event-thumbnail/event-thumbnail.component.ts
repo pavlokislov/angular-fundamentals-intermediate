@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {IEvent} from '../shared/event.model';
 
 @Component({
   templateUrl: 'event-thumbnail.component.html',
@@ -7,7 +8,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['event-thumbnail.component.css']
 })
 export class EventThumbnailComponent {
-  @Input() event: any; // will be passed from other component
+  @Input() event: IEvent; // will be passed from other component
 
   getStartTimeStyle(): any {
     if (this.event && this.event.time === '8:00 am') {
