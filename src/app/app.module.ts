@@ -6,7 +6,7 @@ import {EventsListComponent} from './events/events-list.component';
 import {EventThumbnailComponent} from './events/event-thumbnail/event-thumbnail.component';
 import {NavigationBarComponent} from './navigation/navigation-bar.component';
 import {EventService} from './events/shared/event.service';
-import {ToastrService} from './common/toastr.service';
+import {Toastr, TOASTR_TOKEN} from './common/toastr.service';
 import {EventDetailsComponent} from './events/event-details/event-details.component';
 import {RouterModule} from '@angular/router';
 import {appRoutes} from '../routes';
@@ -20,6 +20,8 @@ import {CreateSessionComponent} from './events/event-details/create-session/crea
 import {SessionListComponent} from './events/event-details/session-list/session.list.component';
 import {CollapsibleWellComponent} from './common/collapsible-well/collapsible-well.component';
 import {DurationPipe} from './events/shared/duration-pipe/duration.pipe';
+
+declare let toastr: Toastr;
 
 @NgModule({
   // importing other modules
@@ -46,7 +48,9 @@ import {DurationPipe} from './events/shared/duration-pipe/duration.pipe';
   // add services
   providers:
     [EventService,
-      ToastrService,
+      {
+        provide: TOASTR_TOKEN, useValue: toastr
+      },
       EventRouteActivator,
       EventsListResolver,
       AuthService,
@@ -62,7 +66,7 @@ export class AppModule {
 
 export function checkDirtyState(component: CreateEventComponent) {
   if (component.isUnsaved) {
-  return window.confirm('You have not saved this event, do you really want to cancel?');
+    return window.confirm('You have not saved this event, do you really want to cancel?');
   }
   return true;
 }
