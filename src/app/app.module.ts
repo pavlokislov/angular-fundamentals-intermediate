@@ -20,8 +20,12 @@ import {CreateSessionComponent} from './events/event-details/create-session/crea
 import {SessionListComponent} from './events/event-details/session-list/session.list.component';
 import {CollapsibleWellComponent} from './common/collapsible-well/collapsible-well.component';
 import {DurationPipe} from './events/shared/duration-pipe/duration.pipe';
+import {SimpleModalComponent} from './common/simple-modal/simple-modal.component';
+import {JQ_TOKEN} from './common/jQuery.service';
+import {ModalTriggerDirective} from './common/modal-trigger/modal-trigger.directive';
 
-declare let toastr: Toastr;
+let toastr: Toastr = window['toastr'];
+let jQuery = window['$'];
 
 @NgModule({
   // importing other modules
@@ -43,13 +47,18 @@ declare let toastr: Toastr;
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   // add services
   providers:
     [EventService,
       {
         provide: TOASTR_TOKEN, useValue: toastr
+      },
+      {
+        provide: JQ_TOKEN, useValue: jQuery
       },
       EventRouteActivator,
       EventsListResolver,
