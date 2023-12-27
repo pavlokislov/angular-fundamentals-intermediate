@@ -9,19 +9,19 @@ import {EventService} from '../shared/event.service';
 export class CreateEventComponent {
   newEvent;
   isUnsaved = true;
+
   constructor(private router: Router,
               private eventService: EventService) {
   }
 
   cancel() {
     this.router.navigate(['/events']);
-
   }
 
-  saveEvent(formValues){
-    this.eventService.saveEvent(formValues);
-    this.isUnsaved = false;
-    this.router.navigate(['/events']);
+  saveEvent(formValues) {
+    this.eventService.saveEvent(formValues).subscribe(() => {
+      this.isUnsaved = false;
+      this.router.navigate(['/events']);
+    });
   }
-
 }

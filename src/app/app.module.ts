@@ -12,7 +12,6 @@ import {RouterModule} from '@angular/router';
 import {appRoutes} from '../routes';
 import {CreateEventComponent} from './events/create-events/create-event.component';
 import {Error404Component} from './errors/error-404.component';
-import {EventRouteActivator} from './events/event-details/event-route-activator.service';
 import {EventsListResolver} from './resolver/events-list-resolver.service';
 import {AuthService} from './user/login/auth.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -26,6 +25,8 @@ import {ModalTriggerDirective} from './common/modal-trigger/modal-trigger.direct
 import {UpvoteComponent} from './events/event-details/upvote/upvote.component';
 import {VoterService} from './events/event-details/voter/voter.service';
 import {LocationValidator} from './events/create-events/location-validator/location-validator.directive';
+import {HttpClientModule} from '@angular/common/http';
+import {EventResolver} from './resolver/event-resolver.service';
 
 let toastr: Toastr = window['toastr'];
 let jQuery = window['$'];
@@ -36,7 +37,8 @@ let jQuery = window['$'];
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   // add component, pipe or directive
   declarations: [
@@ -65,7 +67,7 @@ let jQuery = window['$'];
       {
         provide: JQ_TOKEN, useValue: jQuery
       },
-      EventRouteActivator,
+      EventResolver,
       EventsListResolver,
       AuthService,
       VoterService,

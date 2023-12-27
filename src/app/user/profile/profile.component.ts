@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstName =
-      new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-z.*]')]);
+      new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-z]*')]);
     this.lastName =
       new FormControl(this.authService.currentUser.lastName, Validators.required);
     this.profileForm = new FormGroup({
@@ -42,10 +42,18 @@ export class ProfileComponent implements OnInit {
     this.route.navigate(['events']);
   }
 
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.route.navigate(['/user/login']);
+    });
+  }
+
   saveProfile(formValues) {
     if (this.profileForm.valid) {
-      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-      this.toastr.success('Profile saved');
+      this.authService.updateCurrentUser(formValues.firstName, formValues.lastName)
+        .subscribe(() => {
+          this.toastr.success('Profile saved');
+        });
     }
   }
 
