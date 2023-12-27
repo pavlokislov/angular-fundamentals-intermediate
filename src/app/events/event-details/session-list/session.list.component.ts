@@ -22,7 +22,9 @@ export class SessionListComponent implements OnChanges {
   ngOnChanges() {
     if (this.sessions) {
       this.filterSessions(this.filterBy);
-      this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) : this.visibleSessions.sort(sortByVotesDesc);
+      this.sortBy === 'name'
+        ? this.visibleSessions.sort(sortByNameAsc)
+        : this.visibleSessions.sort(sortByVotesDesc);
     }
   }
 
@@ -58,7 +60,7 @@ function sortByNameAsc(s1: ISession, s2: ISession) {
   } else if (s1.name === s2.name) {
     return 0;
   } else {
-    return 1;
+    return -1;
   }
 }
 
